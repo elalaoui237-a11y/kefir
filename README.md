@@ -32,7 +32,7 @@ https://base44.app/api/apps/6ae231e376f8435c23a48922/functions/createKefirOrder
    وزيادة فدالة `createKefirOrder` (جدول `PACKS`). خاصهم يكونو متطابقين.
 3. **صور الزبناء** — الملفات اللي فيها ناس كيستعملو الكفير:
    `images/person-sipping-smoothie.jpg` (الهيرو), `images/person-girl-straw.jpg`,
-   `images/person-man-pouring.jpg`, `images/person-man-glass.jpg`,
+   `images/person-man-pouring.jpg`, `images/person-man-juice.jpg`,
    `images/person-child-milk.jpg`, `images/person-woman-hijab.jpg`.
    بدّلهم بصور حقيقية ديال زبنائك بنفس الأسماء والقياس، وبلا ما تبدل حتى شي سطر فالـ HTML.
 
