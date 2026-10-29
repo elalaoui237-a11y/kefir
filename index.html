@@ -327,6 +327,37 @@ textarea.input{resize:vertical;min-height:78px}
   .fields{grid-template-columns:1fr}
 }
 
+
+/* ---------- water kefir benefits ---------- */
+.wk{background:var(--cream-2);border-block:1px solid var(--line)}
+.wk__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.wk__img{border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:#fff}
+.wk__img img{width:100%;height:auto;display:block}
+.wk__list{display:grid;gap:14px;margin-top:22px}
+.wk__item{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.wk__ico{flex:0 0 auto;width:38px;height:38px;border-radius:11px;background:var(--leaf-soft);color:var(--green-700);display:grid;place-items:center}
+.wk__item h4{font-size:15.5px;margin-bottom:2px}
+.wk__item p{font-size:13.5px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.wk__grid{grid-template-columns:1fr;gap:28px}}
+
+/* ---------- slides strip ---------- */
+.slides-wrap{position:relative}
+.slides{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;scrollbar-width:thin}
+.slide{flex:0 0 clamp(210px,25vw,290px);scroll-snap-align:start;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-sm)}
+.slide img{width:100%;display:block;height:100%;object-fit:cover;transition:transform .3s ease}
+.slide:hover img{transform:scale(1.03)}
+
+/* ---------- videos ---------- */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.video-slot{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:#0D1712;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.video-slot img{width:100%;height:100%;object-fit:cover;opacity:.5;filter:saturate(.9)}
+.video-slot video{width:100%;height:100%;object-fit:cover;display:block}
+.video-slot__ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;padding:18px}
+.video-slot__play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);display:grid;place-items:center;backdrop-filter:blur(4px)}
+.video-slot__ph b{font-size:14px;font-weight:800}
+.video-slot__ph span{font-size:11.5px;color:var(--leaf-soft);font-weight:700;background:rgba(132,176,76,.18);border:1px solid rgba(132,176,76,.35);padding:4px 12px;border-radius:999px}
+@media(max-width:900px){.video-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}}
+
 /* ---------- faq ---------- */
 .faq{max-width:840px;margin-inline:auto;margin-top:36px}
 .faq details{
@@ -574,7 +605,7 @@ textarea.input{resize:vertical;min-height:78px}
       <!-- حليب -->
       <article class="product">
         <div class="product__media">
-          <img src="images/food-milk-pour.jpg" alt="حليب كيتصب فوق وعاء الفطور" width="1200" height="1800">
+          <img src="images/product-milk-jar.jpg" alt="قنينة حبوب كفير الحليب مع الطينية والحليب" width="1350" height="1688">
           <span class="product__tag product__tag--hot">الأكثر طلبًا</span>
         </div>
         <div class="product__body">
@@ -611,6 +642,43 @@ textarea.input{resize:vertical;min-height:78px}
           <button class="btn btn--leaf btn--block" data-pack="pack_combo">اطلب العرض المزدوج</button>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ WATER KEFIR BENEFITS ============ -->
+<section class="section wk" id="water-benefits">
+  <div class="wrap wk__grid">
+    <div class="wk__img">
+      <img src="images/infographic-water-kefir.jpg" alt="الفوائد الرئيسية لكفير الماء: مشروب طبيعي صحي ولذيذ" width="1365" height="1820" loading="lazy">
+    </div>
+    <div>
+      <span class="eyebrow">كفير الماء</span>
+      <h2 style="font-size:clamp(23px,3.2vw,34px);margin:16px 0 10px">الفوائد الرئيسية لكفير الماء</h2>
+      <p class="lead">مشروب طبيعي، صحي ولذيذ: ماء وسكر وفواكه كتخمّرهم الحبوب وكتعطيك مشروب غازي بالبروبيوتيك.</p>
+      <div class="wk__list">
+        <div class="wk__item">
+          <div class="wk__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3v6a3 3 0 003 3 3 3 0 003-3V3"/><path d="M12 12v9"/><path d="M5 8h8"/></svg></div>
+          <div><h4>تحسين صحة الجهاز الهضمي</h4><p>فيه البروبيوتيك (بكتيريا وخمائر نافعة) اللي كتوازن بكتيريا الأمعاء، كتعزز الهضم وكتخفف الانتفاخ وآلام البطن.</p></div>
+        </div>
+        <div class="wk__item">
+          <div class="wk__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v6M9 11h6"/></svg></div>
+          <div><h4>تقوية المناعة</h4><p>البروبيوتيك كيساعد فمكافحة البكتيريا الضارة وكيعزز نشاط الجهاز المناعي.</p></div>
+        </div>
+        <div class="wk__item">
+          <div class="wk__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2 5.6.8-4 4 1 5.6-5-2.8-5 2.8 1-5.6-4-4 5.6-.8z"/></svg></div>
+          <div><h4>غني بالفيتامينات والمعادن</h4><p>فيتامينات B و C ومعادن بحال الحديد، المغنيسيوم والبوتاسيوم اللي كيتكوّنو خلال التخمير.</p></div>
+        </div>
+        <div class="wk__item">
+          <div class="wk__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 5a3 3 0 00-3 3v8a3 3 0 003 3h10a3 3 0 003-3V8a3 3 0 00-3-3z"/><path d="M9 5v14M15 5v14"/></svg></div>
+          <div><h4>دعم صحة العظام</h4><p>فيه الكالسيوم، المغنيسيوم والفوسفور: معادن مهمة لقوة العظام وتقليل خطر الهشاشة.</p></div>
+        </div>
+        <div class="wk__item">
+          <div class="wk__ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 100-16 8 8 0 000 16z"/><path d="M12 8v4l3 2"/></svg></div>
+          <div><h4>تنظيم سكر الدم</h4><p>الدراسات كتشير أن البروبيوتيك فكفير الماء كيساهم فتحسين استجابة الجسم للسكر.</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -656,6 +724,44 @@ textarea.input{resize:vertical;min-height:78px}
   </div>
 </section>
 
+
+<!-- ============ VIDEOS ============ -->
+<section class="section section--tight" id="videos">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">فيديوهات</span>
+      <h2 style="font-size:clamp(23px,3.2vw,34px);margin:16px 0 10px">شوفو الكفير بعينيك</h2>
+      <p class="lead">فيديوهات قصيرة: التحضير، التصفية، وكيفاش الحبوب كتبقى حية وكتتكاثر.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-slot" data-video="videos/kefir-preparation.mp4" data-poster="images/food-milk-pour.jpg">
+        <img src="images/food-milk-pour.jpg" alt="تحضير كفير الحليب" loading="lazy">
+        <div class="video-slot__ph">
+          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <b>طريقة التحضير</b>
+          <span>قريبًا</span>
+        </div>
+      </div>
+      <div class="video-slot" data-video="videos/kefir-straining.mp4" data-poster="images/kefir-bottles.jpg">
+        <img src="images/kefir-bottles.jpg" alt="تصفية مشروب الكفير" loading="lazy">
+        <div class="video-slot__ph">
+          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <b>التصفية والاستهلاك</b>
+          <span>قريبًا</span>
+        </div>
+      </div>
+      <div class="video-slot" data-video="videos/kefir-grains.mp4" data-poster="images/kefir-grains.jpg">
+        <img src="images/kefir-grains.jpg" alt="حبوب الكفير الحية" loading="lazy">
+        <div class="video-slot__ph">
+          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <b>الحبوب كتتكاثر</b>
+          <span>قريبًا</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PEOPLE ============ -->
 <section class="section" id="people">
   <div class="wrap">
@@ -690,6 +796,26 @@ textarea.input{resize:vertical;min-height:78px}
         <img src="images/person-woman-hijab.jpg" alt="سيدة مبتسمة بلباس تقليدي" width="1200" height="1800" loading="lazy">
         <figcaption>روتين يومي<span>كأس مع الفطور ولا مع العشية</span></figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ LYLA CARDS ============ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">من حملتنا</span>
+      <h2 style="font-size:clamp(22px,3vw,31px);margin:14px 0 8px">بطاقات LYLA: الفوائد فصور</h2>
+      <p class="lead">جرّي السحب على اليمين باش تشوف البطاقات كاملة.</p>
+    </div>
+    <div class="slides-wrap">
+      <div class="slides">
+        <figure class="slide"><img src="images/ref-slide-gut.jpg" alt="١. دعم توازن البكتيريا النافعة في الأمعاء" loading="lazy"></figure>
+        <figure class="slide"><img src="images/ref-slide-immune.jpg" alt="٣. دعم الجهاز المناعي" loading="lazy"></figure>
+        <figure class="slide"><img src="images/ref-slide-bones.jpg" alt="٤. دعم صحة العظام" loading="lazy"></figure>
+        <figure class="slide"><img src="images/ref-slide-invest.jpg" alt="استثمر في صحتك كل يوم" loading="lazy"></figure>
+      </div>
     </div>
   </div>
 </section>
@@ -1021,6 +1147,25 @@ form.addEventListener("submit", async (e) => {
     submitBtn.disabled = false;
     submitBtn.textContent = "تأكيد الطلب — الدفع عند الاستلام";
   }
+});
+
+
+/* ---------- الفيديوهات: كتظهر وحدها ملّي كيتزادو الملفات ---------- */
+document.querySelectorAll("[data-video]").forEach(async (slot) => {
+  const src = slot.dataset.video;
+  try {
+    const res = await fetch(src, { method: "HEAD" });
+    if (!res.ok || !(res.headers.get("content-type") || "").includes("video")) return;
+    const video = document.createElement("video");
+    video.src = src;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.poster = slot.dataset.poster || "";
+    slot.querySelector(".video-slot__ph")?.remove();
+    slot.querySelector("img")?.remove();
+    slot.appendChild(video);
+  } catch (_) { /* الفيديو مازال ما كاينش: كنخليو البلاصة */ }
 });
 
 /* ---------- المودال ---------- */
