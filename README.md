@@ -30,11 +30,11 @@ https://base44.app/api/apps/6ae231e376f8435c23a48922/functions/createKefirOrder
    ```
 2. **الأثمنة** — كاينة فجوج بلايص: كروت المنتجات (HTML) وفـ `<input data-price>` داخل الاستمارة،
    وزيادة فدالة `createKefirOrder` (جدول `PACKS`). خاصهم يكونو متطابقين.
-3. **صور الزبناء** — الملفات اللي فيها ناس كيستعملو الكفير:
-   `images/person-sipping-smoothie.jpg` (الهيرو), `images/person-girl-straw.jpg`,
-   `images/person-man-pouring.jpg`, `images/person-man-juice.jpg`,
-   `images/person-child-milk.jpg`, `images/person-woman-hijab.jpg`.
-   بدّلهم بصور حقيقية ديال زبنائك بنفس الأسماء والقياس، وبلا ما تبدل حتى شي سطر فالـ HTML.
+3. **الصور** — كل الصور ديال المنتج. باش تبدل صورة، حط الملف الجديد بنفس الاسم فـ `images/`:
+   `product-milk-jar.jpg` (قنينة الحبوب), `kefir-grains.jpg` (الحبيبات), `kefir-compare.jpg`
+   (الحليب مقابل الماء), `kefir-bottles.jpg` (المشروب), `kefir-montage.jpg`,
+   `infographic-water-kefir.jpg` (أنفوغرافيك الفوائد), `food-*.jpg` (مشاهد الحليب).
+   الصور ديال الفيديوهات كتجي أوتوماتيكيًا من `videos/*.jpg`.
 
 > ملاحظة: صور الأشخاص اللي كاينة دابا هي صور فوتوغرافية حقيقية من مكتبة Pexels
 > (رخصة مجانية للاستعمال التجاري)، ولكن ماشي زبناء حقيقيين ديال المتجر.
