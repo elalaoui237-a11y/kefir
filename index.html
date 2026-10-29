@@ -348,15 +348,24 @@ textarea.input{resize:vertical;min-height:78px}
 .slide:hover img{transform:scale(1.03)}
 
 /* ---------- videos ---------- */
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-.video-slot{position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:#0D1712;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
-.video-slot img{width:100%;height:100%;object-fit:cover;opacity:.5;filter:saturate(.9)}
-.video-slot video{width:100%;height:100%;object-fit:cover;display:block}
-.video-slot__ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;padding:18px}
-.video-slot__play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);display:grid;place-items:center;backdrop-filter:blur(4px)}
-.video-slot__ph b{font-size:14px;font-weight:800}
-.video-slot__ph span{font-size:11.5px;color:var(--leaf-soft);font-weight:700;background:rgba(132,176,76,.18);border:1px solid rgba(132,176,76,.35);padding:4px 12px;border-radius:999px}
-@media(max-width:900px){.video-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}}
+.vstrip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px 2px 18px;scrollbar-width:thin}
+.vcard{flex:0 0 clamp(190px,22vw,250px);margin:0;scroll-snap-align:start}
+.vcard__btn{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;padding:0;cursor:pointer;border-radius:20px;overflow:hidden;background:#0D1712;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
+.vcard__btn:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.vcard__btn img{width:100%;height:100%;object-fit:cover}
+.vcard__btn::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(9,20,13,.55),rgba(9,20,13,0) 55%)}
+.vcard__play{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:2}
+.vcard__dur{position:absolute;inset-inline-start:10px;bottom:10px;z-index:2;background:rgba(9,20,13,.7);color:#fff;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px}
+.vcard figcaption{padding:12px 4px 0}
+.vcard figcaption b{display:block;font-size:14px;color:var(--green-800);line-height:1.4}
+.vcard figcaption span{display:block;font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:2px}
+
+/* video lightbox */
+.vbox{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(9,20,13,.86);backdrop-filter:blur(4px)}
+.vbox.open{display:flex}
+.vbox__inner{position:relative;width:min(420px,100%);max-height:92vh}
+.vbox video{width:100%;max-height:88vh;border-radius:18px;background:#000;display:block}
+.vbox__close{position:absolute;top:-14px;inset-inline-end:-6px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;background:#fff;color:var(--green-800);font-size:22px;line-height:1;display:grid;place-items:center;box-shadow:var(--shadow-sm)}
 
 /* ---------- faq ---------- */
 .faq{max-width:840px;margin-inline:auto;margin-top:36px}
@@ -731,33 +740,49 @@ textarea.input{resize:vertical;min-height:78px}
     <div class="center">
       <span class="eyebrow">فيديوهات</span>
       <h2 style="font-size:clamp(23px,3.2vw,34px);margin:16px 0 10px">شوفو الكفير بعينيك</h2>
-      <p class="lead">فيديوهات قصيرة: التحضير، التصفية، وكيفاش الحبوب كتبقى حية وكتتكاثر.</p>
+      <p class="lead">فيديوهات قصيرة: كيفاش كيتصبّ، كيفاش كيفور، وشنو كيعطيك الكفير فالكأس.</p>
     </div>
-    <div class="video-grid">
-      <div class="video-slot" data-video="videos/kefir-preparation.mp4" data-poster="images/food-milk-pour.jpg">
-        <img src="images/food-milk-pour.jpg" alt="تحضير كفير الحليب" loading="lazy">
-        <div class="video-slot__ph">
-          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-          <b>طريقة التحضير</b>
-          <span>قريبًا</span>
-        </div>
-      </div>
-      <div class="video-slot" data-video="videos/kefir-straining.mp4" data-poster="images/kefir-bottles.jpg">
-        <img src="images/kefir-bottles.jpg" alt="تصفية مشروب الكفير" loading="lazy">
-        <div class="video-slot__ph">
-          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-          <b>التصفية والاستهلاك</b>
-          <span>قريبًا</span>
-        </div>
-      </div>
-      <div class="video-slot" data-video="videos/kefir-grains.mp4" data-poster="images/kefir-grains.jpg">
-        <img src="images/kefir-grains.jpg" alt="حبوب الكفير الحية" loading="lazy">
-        <div class="video-slot__ph">
-          <div class="video-slot__play"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
-          <b>الحبوب كتتكاثر</b>
-          <span>قريبًا</span>
-        </div>
-      </div>
+    <div class="vstrip">
+      <figure class="vcard">
+        <button class="vcard__btn" type="button" data-src="videos/kefir-three-drinks.mp4" data-poster="videos/kefir-three-drinks.jpg" aria-label="تشغيل: ثلاث مشروبات طبيعية">
+          <img src="videos/kefir-three-drinks.jpg" alt="ثلاث مشروبات طبيعية" width="540" height="960" loading="lazy">
+          <span class="vcard__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="vcard__dur">46 ثانية</span>
+        </button>
+        <figcaption><b>ثلاث مشروبات طبيعية</b><span>ثلاث وصفات كفير ماء: ما تحتاج غير حبوب وفواكه</span></figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="vcard__btn" type="button" data-src="videos/kefir-pour.mp4" data-poster="videos/kefir-pour.jpg" aria-label="تشغيل: كفير الماء بالبرتقال">
+          <img src="videos/kefir-pour.jpg" alt="كفير الماء بالبرتقال" width="540" height="960" loading="lazy">
+          <span class="vcard__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="vcard__dur">23 ثانية</span>
+        </button>
+        <figcaption><b>كفير الماء بالبرتقال</b><span>كيتصبّ فالكأس: غازي ومنعش</span></figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="vcard__btn" type="button" data-src="videos/kefir-rose-petals.mp4" data-poster="videos/kefir-rose-petals.jpg" aria-label="تشغيل: كفير بالورد">
+          <img src="videos/kefir-rose-petals.jpg" alt="كفير بالورد" width="540" height="960" loading="lazy">
+          <span class="vcard__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="vcard__dur">18 ثانية</span>
+        </button>
+        <figcaption><b>كفير بالورد</b><span>قنينة بشرائح الورد وكأس جاهز</span></figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="vcard__btn" type="button" data-src="videos/kefir-fizz-rose.mp4" data-poster="videos/kefir-fizz-rose.jpg" aria-label="تشغيل: التخمير الثاني: كيفور">
+          <img src="videos/kefir-fizz-rose.jpg" alt="التخمير الثاني: كيفور" width="540" height="960" loading="lazy">
+          <span class="vcard__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="vcard__dur">14 ثانية</span>
+        </button>
+        <figcaption><b>التخمير الثاني: كيفور</b><span>شوف الغاز كيتكوّن وكيطلع</span></figcaption>
+      </figure>
+      <figure class="vcard">
+        <button class="vcard__btn" type="button" data-src="videos/kefir-second-ferment.mp4" data-poster="videos/kefir-second-ferment.jpg" aria-label="تشغيل: الرغوة الطبيعية">
+          <img src="videos/kefir-second-ferment.jpg" alt="الرغوة الطبيعية" width="540" height="960" loading="lazy">
+          <span class="vcard__play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="vcard__dur">13 ثانية</span>
+        </button>
+        <figcaption><b>الرغوة الطبيعية</b><span>علامة أن التخمير مزيان</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1150,23 +1175,28 @@ form.addEventListener("submit", async (e) => {
 });
 
 
-/* ---------- الفيديوهات: كتظهر وحدها ملّي كيتزادو الملفات ---------- */
-document.querySelectorAll("[data-video]").forEach(async (slot) => {
-  const src = slot.dataset.video;
-  try {
-    const res = await fetch(src, { method: "HEAD" });
-    if (!res.ok || !(res.headers.get("content-type") || "").includes("video")) return;
-    const video = document.createElement("video");
-    video.src = src;
-    video.controls = true;
-    video.playsInline = true;
-    video.preload = "metadata";
-    video.poster = slot.dataset.poster || "";
-    slot.querySelector(".video-slot__ph")?.remove();
-    slot.querySelector("img")?.remove();
-    slot.appendChild(video);
-  } catch (_) { /* الفيديو مازال ما كاينش: كنخليو البلاصة */ }
+/* ---------- الفيديوهات: كيتفتحو فنافذة ---------- */
+const vbox = document.createElement("div");
+vbox.className = "vbox";
+vbox.innerHTML = '<div class="vbox__inner"><button class="vbox__close" type="button" aria-label="سدّ">&times;</button><video controls playsinline preload="none"></video></div>';
+document.body.appendChild(vbox);
+const vbVideo = vbox.querySelector("video");
+function closeVideo() {
+  vbVideo.pause();
+  vbVideo.removeAttribute("src");
+  vbVideo.load();
+  vbox.classList.remove("open");
+}
+document.querySelectorAll(".vcard__btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    vbVideo.poster = btn.dataset.poster || "";
+    vbVideo.src = btn.dataset.src;
+    vbox.classList.add("open");
+    vbVideo.play().catch(() => {});
+  });
 });
+vbox.addEventListener("click", e => { if (e.target === vbox || e.target.classList.contains("vbox__close")) closeVideo(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && vbox.classList.contains("open")) closeVideo(); });
 
 /* ---------- المودال ---------- */
 document.getElementById("closeModal").addEventListener("click", () => {
