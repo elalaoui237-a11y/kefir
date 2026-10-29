@@ -1,2 +1,5 @@
 User-agent: *
+Allow: /
 Disallow: /videos/
+
+Sitemap: https://elalaoui237-a11y.github.io/kefir/sitemap.xml
