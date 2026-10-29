@@ -202,8 +202,8 @@ ul{margin:0;padding:0;list-style:none}
   transition:transform .2s ease,box-shadow .2s ease;
 }
 .product:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.product__media{position:relative;height:200px;overflow:hidden;background:var(--cream-2)}
-.product__media img{width:100%;height:100%;object-fit:cover}
+.product__media{position:relative;height:clamp(300px,30vw,400px);overflow:hidden;background:var(--cream-2)}
+.product__media img{width:100%;height:100%;object-fit:cover;object-position:center}
 .product__tag{
   position:absolute;inset-inline-end:12px;top:12px;background:#FFFDF6;color:var(--green-800);
   font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:999px;border:1px solid var(--line);
@@ -499,7 +499,7 @@ textarea.input{resize:vertical;min-height:78px}
       </div>
       <div class="hero__badge">-40% هاد الأسبوع</div>
       <div class="hero__pill">
-        <img src="images/kefir-bottles.jpg" alt="قنينات كفير مصفّى بالفواكه" width="415" height="739">
+        <img src="images/product-water-pouch.jpg" alt="كيس كفير الماء LYLA 50 غرام" width="1024" height="1024">
         <div>
           <b>50 غرام حبوب حية</b>
           <span>كتوصل جاهزة للتخمير</span>
@@ -593,7 +593,7 @@ textarea.input{resize:vertical;min-height:78px}
       <!-- ماء -->
       <article class="product">
         <div class="product__media">
-          <img src="images/kefir-bottles.jpg" alt="مشروب كفير الماء بالفواكه فقنينات زجاجية" width="415" height="739">
+          <img src="images/product-water-pouch.jpg" alt="كيس كفير الماء LYLA 50 غرام" width="1024" height="1024">
           <span class="product__tag">منعش</span>
         </div>
         <div class="product__body">
@@ -614,7 +614,7 @@ textarea.input{resize:vertical;min-height:78px}
       <!-- حليب -->
       <article class="product">
         <div class="product__media">
-          <img src="images/product-milk-jar.jpg" alt="قنينة حبوب كفير الحليب مع الطينية والحليب" width="1350" height="1688">
+          <img src="images/product-milk-pouch.jpg" alt="كيس كفير الحليب LYLA 50 غرام" width="1350" height="1688">
           <span class="product__tag product__tag--hot">الأكثر طلبًا</span>
         </div>
         <div class="product__body">
@@ -635,7 +635,7 @@ textarea.input{resize:vertical;min-height:78px}
       <!-- العرض المزدوج -->
       <article class="product product--combo">
         <div class="product__media">
-          <img src="images/kefir-grains.jpg" alt="حبيبات الكفير للحليب وحبيبات الكفير للماء" width="746" height="411">
+          <img src="images/product-combo-pouch.jpg" alt="العرض المزدوج: كيس كفير الحليب وكيس كفير الماء" width="746" height="411">
           <span class="product__tag product__tag--hot">وفّر 150 د.م</span>
         </div>
         <div class="product__body">
