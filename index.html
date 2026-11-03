@@ -1001,14 +1001,14 @@ img,video{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-se
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.6 7 .9-5 4.9 1.2 7L12 18l-6.2 3.4L7 14.4 2 9.5l7-.9z"/></svg>
       </div>
       <h2 style="font-size:clamp(24px,3.4vw,36px)">آراء الزبناء</h2>
-      <p class="lead" style="color:#A9BC9F">كل تقييم هنا كيتنشر من بعد المراجعة — بلا تقييمات مصنوعة.</p>
+      <p class="lead" style="color:#A9BC9F">تقييمات الزبناء كتتنشر مباشرة. كنحيّدو غير الروابط والسبام.</p>
     </div>
 
     <div class="review-grid" id="reviewGrid" aria-live="polite">
     </div>
     <div class="review-form">
       <h3>شريتي من عندنا؟ كتب لينا تجربتك</h3>
-      <p>التقييم ديالك كيتنشر من بعد المراجعة، وكيعاون زبناء آخرين ياخدو قرار صحيح.</p>
+      <p>التقييم ديالك كيبان مباشرة فالصفحة، وكيعاون زبناء آخرين ياخدو قرار صحيح.</p>
       <form id="reviewFormEl" novalidate>
         <div class="rf-row">
           <input name="rname" type="text" placeholder="السمية" maxlength="60" required>
@@ -1447,8 +1447,8 @@ async function loadReviews() {
       grid.innerHTML = `
       <article class="rv rv--featured rv--dashed">
         <div class="rv__body">
-          <div class="rv__badges"><span class="rv__badge">التقييمات كتتنشر بعد المراجعة</span></div>
-          <p class="rv__quote rv__quote--long">كنراجعو كل تقييم واحد بواحد. شريتي من عندنا؟ كتب لينا تجربتك فالأسفل — كتاخد 30 ثانية.</p>
+          <div class="rv__badges"><span class="rv__badge">تقييمات من زبناء حقيقيين</span></div>
+          <p class="rv__quote rv__quote--long">شريتي من عندنا؟ كتب لينا تجربتك فالأسفل، وكتظهر مباشرة فالصفحة — كتاخد 30 ثانية.</p>
           <div class="rv__who"><div class="rv__avatar">L</div>
             <div><b>LYLA Food</b><span>أول تقييم غادي يبان هنا</span></div></div>
         </div>
@@ -1535,7 +1535,7 @@ loadReviews();
   };
 
   if (localStorage.getItem("lyla_review_sent")) {
-    form.innerHTML = '<p class="rf-msg rf-msg--ok">تصيفط ليك التقييم، شكرًا 🙏 غادي يظهر من بعد المراجعة.</p>';
+    form.innerHTML = '<p class="rf-msg rf-msg--ok">تصيفط ليك التقييم، شكرًا 🙏</p>';
   }
 
   form.addEventListener("submit", async (e) => {
@@ -1562,7 +1562,7 @@ loadReviews();
       if (!res.ok || !json.ok) throw new Error(json.error || "failed");
       localStorage.setItem("lyla_review_sent", "1");
       form.reset();
-      setMsg("شكرًا 🙏 التقييم وصل، وغادي يظهر من بعد المراجعة.", true);
+      setMsg("شكرًا 🙏 التقييم تنشر. عاود حدّث الصفحة باش تشوفو.", true);
       btn.textContent = "تصيفط";
     } catch (err) {
       setMsg("وقع مشكل. عاود المحاولة.", false);
