@@ -476,6 +476,41 @@ img,video{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-se
 .review--empty{border-style:dashed}
 .review__photo{width:100%;border-radius:12px;margin-bottom:12px;display:block}
 @media(max-width:640px){.review-form .rf-row{grid-template-columns:1fr}}
+
+/* ---------- تقييمات: تخطيط متنوع ---------- */
+#reviewGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.rv{background:#FFFDF6;border:1px solid var(--line);border-radius:18px;padding:20px 22px;position:relative}
+.rv--featured{grid-column:span 2;display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:center;padding:0;overflow:hidden;background:var(--cream-2)}
+.rv--featured .rv__body{padding:24px 22px}
+.rv--featured .rv__media{height:100%;min-height:190px}
+.rv--featured .rv__media img{width:100%;height:100%;object-fit:cover}
+.rv--wide{grid-column:span 2}
+.rv__quote{font-size:15.5px;line-height:1.95;margin:10px 0 16px;color:var(--ink)}
+.rv__quote--long{font-size:16.5px}
+.rv__stars{color:var(--gold);font-size:15px;letter-spacing:2px}
+.rv__who{display:flex;align-items:center;gap:10px}
+.rv__avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;background:var(--leaf-soft);color:var(--green-800);flex:0 0 auto}
+.rv__who b{display:block;font-size:14px}
+.rv__who span{font-size:12px;color:var(--muted)}
+.rv__badges{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+.rv__badge{font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--leaf-soft);color:var(--green-800)}
+.rv__badge--verified{background:var(--green-800);color:#EAF1E2}
+.rv__shot{margin:0 0 14px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.rv__shot img{width:100%;display:block}
+.rv--dark{background:var(--green-800);border-color:var(--green-700)}
+.rv--dark .rv__quote{color:#EAF1E2}
+.rv--dark .rv__who b{color:#fff}
+.rv--dark .rv__who span{color:#A9BC9F}
+.rv--dashed{border-style:dashed;background:transparent}
+@media(max-width:900px){
+  #reviewGrid{grid-template-columns:1fr 1fr}
+  .rv--featured{grid-column:span 2;grid-template-columns:1fr}
+  .rv--featured .rv__media{min-height:180px}
+}
+@media(max-width:620px){
+  #reviewGrid{grid-template-columns:1fr}
+  .rv--featured,.rv--wide{grid-column:span 1}
+}
 </style>
 </head>
 <body>
@@ -1407,35 +1442,85 @@ async function loadReviews() {
     const res = await fetch(REVIEWS_URL, { headers: { Accept: "application/json" } });
     const data = await res.json();
     const list = (data && data.reviews) || [];
+
     if (!list.length) {
       grid.innerHTML = `
-      <article class="review review--empty">
-        <div class="stars">★★★★★</div>
-        <p>كنراجعو كل تقييم قبل ما ننشروه، باش تكون التقييمات كلها من زبناء حقيقيين. شريتي من عندنا؟ كتب لينا تجربتك فالأسفل — كتاخد 30 ثانية وكتعاون زبناء آخرين ياخدو قرار صحيح.</p>
-        <div class="review__who">
-          <div class="review__avatar">L</div>
-          <div><b>LYLA Food</b><span>التقييمات كتتنشر من بعد المراجعة</span></div>
+      <article class="rv rv--featured rv--dashed">
+        <div class="rv__body">
+          <div class="rv__badges"><span class="rv__badge">التقييمات كتتنشر بعد المراجعة</span></div>
+          <p class="rv__quote rv__quote--long">كنراجعو كل تقييم واحد بواحد. شريتي من عندنا؟ كتب لينا تجربتك فالأسفل — كتاخد 30 ثانية.</p>
+          <div class="rv__who"><div class="rv__avatar">L</div>
+            <div><b>LYLA Food</b><span>أول تقييم غادي يبان هنا</span></div></div>
         </div>
+        <div class="rv__media"><img src="images/hero-woman-kefir.jpg" alt="زبونة ديال LYLA Food" width="576" height="1024" loading="lazy"></div>
       </article>`;
       return;
     }
-    grid.innerHTML = list.map(r => {
-      const who = (r.name || "").trim();
-      const initial = who ? who.charAt(0) : "ز";
-      const meta = [r.city, PACK_LABEL[r.pack] || ""].filter(Boolean).join(" • ");
-      const photo = r.photo_url ? `<img class="review__photo" src="${r.photo_url}" alt="صورة من الزبون" loading="lazy">` : "";
-      return `<article class="review">
-        <div class="stars">${reviewStars(r.rating)}</div>
-        <p>«${(r.text || "").replace(/</g, "&lt;")}»</p>
-        ${photo}
-        <div class="review__who">
-          <div class="review__avatar">${initial}</div>
-          <div><b>${who.replace(/</g, "&lt;")}</b><span>${meta}</span></div>
-        </div>
+
+    grid.innerHTML = list.map((r, i) => {
+      const who = (r.name || "").trim() || "زبون";
+      const initial = who.charAt(0);
+      const meta = [r.city, PACK_LABEL[r.pack] || ""].filter(Boolean).join(" · ");
+      const stars = reviewStars(r.rating);
+      const txt = (r.text || "").replace(/</g, "&lt;");
+      const long = txt.length > 180;
+      const badges = [
+        r.verified ? '<span class="rv__badge rv__badge--verified">زبون موثق</span>' : "",
+        r.pack ? `<span class="rv__badge">${PACK_LABEL[r.pack] || ""}</span>` : ""
+      ].filter(Boolean).join("");
+      const who_html = `<div class="rv__who"><div class="rv__avatar">${initial}</div>
+          <div><b>${who.replace(/</g, "&lt;")}</b><span>${meta}</span></div></div>`;
+
+      // 1) تقييم فيه صورة (سكرين شوت ديال واتساب مثلًا) — كارت بصورة
+      if (r.photo_url) {
+        return `<article class="rv rv--wide">
+          <div class="rv__stars">${stars}</div>
+          <figure class="rv__shot"><img src="${r.photo_url}" alt="لقطة من الزبون" loading="lazy"></figure>
+          <p class="rv__quote">«${txt}»</p>
+          <div class="rv__badges">${badges}</div>
+          ${who_html}
+        </article>`;
+      }
+      // 2) التقييم الأول: كارت كبير بجوج أعمدة
+      if (i === 0) {
+        return `<article class="rv rv--featured">
+          <div class="rv__body">
+            <div class="rv__badges">${badges}</div>
+            <div class="rv__stars">${stars}</div>
+            <p class="rv__quote rv__quote--long">«${txt}»</p>
+            ${who_html}
+          </div>
+          <div class="rv__media"><img src="images/woman-two-kefirs.jpg" alt="كفير الحليب وكفير الماء" width="768" height="1024" loading="lazy"></div>
+        </article>`;
+      }
+      // 3) تقييم طويل: كارت عريض
+      if (long) {
+        return `<article class="rv rv--wide">
+          <div class="rv__stars">${stars}</div>
+          <p class="rv__quote rv__quote--long">«${txt}»</p>
+          <div class="rv__badges">${badges}</div>
+          ${who_html}
+        </article>`;
+      }
+      // 4) كل تالت تقييم: كارت غامق (تنويع بصري)
+      if (i % 3 === 2) {
+        return `<article class="rv rv--dark">
+          <div class="rv__stars">${stars}</div>
+          <p class="rv__quote">«${txt}»</p>
+          <div class="rv__who"><div class="rv__avatar">${initial}</div>
+            <div><b>${who.replace(/</g, "&lt;")}</b><span>${meta}</span></div></div>
+        </article>`;
+      }
+      // 5) كارت عادي
+      return `<article class="rv">
+        <div class="rv__stars">${stars}</div>
+        <p class="rv__quote">«${txt}»</p>
+        <div class="rv__badges">${badges}</div>
+        ${who_html}
       </article>`;
     }).join("");
   } catch (e) {
-    grid.innerHTML = `<article class="review review--empty"><p>ما قدرناش نحمّلو التقييمات دابا. عاود حدّث الصفحة.</p></article>`;
+    grid.innerHTML = `<article class="rv rv--dashed"><p class="rv__quote">ما قدرناش نحمّلو التقييمات دابا. عاود حدّث الصفحة.</p></article>`;
   }
 }
 loadReviews();
