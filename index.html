@@ -459,6 +459,23 @@ img,video{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-se
   background:#F3F8EC;border-radius:10px;padding:8px 12px;margin:16px 0;display:inline-block;
 }
 .modal .btn{margin-top:18px}
+
+.review-form{max-width:640px;margin:38px auto 0;background:#FFFDF6;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.review-form h3{font-size:19px;margin:0 0 6px}
+.review-form>p{font-size:13.5px;color:var(--muted);margin:0 0 18px}
+.review-form .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.review-form input,.review-form select,.review-form textarea{
+  width:100%;font-family:inherit;font-size:14px;padding:12px 14px;border:1px solid var(--line);
+  border-radius:12px;background:#fff;color:var(--ink)}
+.review-form textarea{margin-bottom:14px;resize:vertical}
+.review-form input:focus,.review-form select:focus,.review-form textarea:focus{outline:2px solid var(--leaf-soft);border-color:var(--green-600)}
+.review-form .btn{width:100%}
+.rf-msg{font-size:13px;margin:12px 0 0;min-height:18px}
+.rf-msg--ok{color:var(--green-600);font-weight:700}
+.rf-msg--err{color:var(--red);font-weight:700}
+.review--empty{border-style:dashed}
+.review__photo{width:100%;border-radius:12px;margin-bottom:12px;display:block}
+@media(max-width:640px){.review-form .rf-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -515,8 +532,8 @@ img,video{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-se
         <a href="#steps" class="btn btn--ghost">كيفاش كيتحضّر؟</a>
       </div>
       <div class="hero__trust">
-        <div><b>+1200</b><span>طلبية بالمغرب</span></div>
-        <div><b>4.9/5</b><span>معدل تقييم الزبناء</span></div>
+        <div><b>100%</b><span>حبوب حية أصلية</span></div>
+        <div><b>ضمان</b><span>كنبدلو إلا وصلات ميتة</span></div>
         <div><b>24-48h</b><span>مدة التوصيل</span></div>
         <div><b>0 د.م</b><span>خلّص من بعد ما تعاين</span></div>
       </div>
@@ -949,35 +966,40 @@ img,video{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-se
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.6 7 .9-5 4.9 1.2 7L12 18l-6.2 3.4L7 14.4 2 9.5l7-.9z"/></svg>
       </div>
       <h2 style="font-size:clamp(24px,3.4vw,36px)">آراء الزبناء</h2>
-      <p class="lead" style="color:#A9BC9F">تقييم 4.9/5 على أساس أكثر من 1200 طلبية بالمغرب</p>
+      <p class="lead" style="color:#A9BC9F">كل تقييم هنا كيتنشر من بعد المراجعة — بلا تقييمات مصنوعة.</p>
     </div>
 
-    <div class="review-grid">
-      <article class="review">
-        <div class="stars">★★★★★</div>
-        <p>«كنت كنعاني من القولون العصبي والانتفاخ أكثر من 4 سنوات. بعد استعمال كفير الحليب مدة أسبوعين، كلشي تبدل. المصران ديالي ارتاح وبقيت كنشربو يوميًا.»</p>
-        <div class="review__who">
-          <div class="review__avatar">ف</div>
-          <div><b>فاطمة الزهراء</b><span>مكناس</span></div>
-        </div>
-      </article>
-      <article class="review">
-        <div class="stars">★★★★★</div>
-        <p>«طلبت العرض المزدوج. التوصيل كان سريع ف 24 ساعة للمدينة ديالي، والمنتج جا فحاوية ممتازة والحبوب حية وكتتكاثر بسرعة.»</p>
-        <div class="review__who">
-          <div class="review__avatar">ي</div>
-          <div><b>ياسين</b><span>أكادير</span></div>
-        </div>
-      </article>
-      <article class="review">
-        <div class="stars">★★★★★</div>
-        <p>«كفير الماء بديل واعر للمشروبات الغازية لأولادي. كنزيد معاه الحامض والنعناع كيجيب غازي ولذيذ وصحي بزاف.»</p>
-        <div class="review__who">
-          <div class="review__avatar">خ</div>
-          <div><b>خديجة</b><span>فاس</span></div>
-        </div>
-      </article>
+    <div class="review-grid" id="reviewGrid" aria-live="polite">
     </div>
+    <div class="review-form">
+      <h3>شريتي من عندنا؟ كتب لينا تجربتك</h3>
+      <p>التقييم ديالك كيتنشر من بعد المراجعة، وكيعاون زبناء آخرين ياخدو قرار صحيح.</p>
+      <form id="reviewFormEl" novalidate>
+        <div class="rf-row">
+          <input name="rname" type="text" placeholder="السمية" maxlength="60" required>
+          <input name="rcity" type="text" placeholder="المدينة" maxlength="60">
+        </div>
+        <div class="rf-row">
+          <select name="rating" aria-label="التنقيط">
+            <option value="5">★★★★★ ممتاز</option>
+            <option value="4">★★★★ مزيان</option>
+            <option value="3">★★★ متوسط</option>
+            <option value="2">★★ ضعيف</option>
+            <option value="1">★ ماشي مزيان</option>
+          </select>
+          <select name="pack" aria-label="المنتج">
+            <option value="">المنتج (اختياري)</option>
+            <option value="milk_50">كفير الحليب 50g</option>
+            <option value="water_50">كفير الماء 50g</option>
+            <option value="pack_combo">العرض المزدوج</option>
+          </select>
+        </div>
+        <textarea name="rtext" rows="4" maxlength="800" placeholder="شنو كانت التجربة ديالك؟ (20 حرف على الأقل)" required></textarea>
+        <button class="btn btn--primary" type="submit">صيفط التقييم</button>
+        <p class="rf-msg" id="reviewMsg" role="status"></p>
+      </form>
+    </div>
+
   </div>
 </section>
 
@@ -1367,6 +1389,104 @@ document.addEventListener("dragstart", e => {
   const t = e.target;
   if (t && (t.tagName === "IMG" || t.tagName === "VIDEO")) e.preventDefault();
 });
+
+/* ---------- التقييمات: تحميل + إرسال ---------- */
+const REVIEWS_URL = "https://base44.app/api/apps/6ae231e376f8435c23a48922/functions/listProductReviews";
+const REVIEW_CREATE_URL = "https://base44.app/api/apps/6ae231e376f8435c23a48922/functions/createProductReview";
+const PACK_LABEL = { milk_50: "كفير الحليب 50g", water_50: "كفير الماء 50g", pack_combo: "العرض المزدوج" };
+
+function reviewStars(n) {
+  const k = Math.max(1, Math.min(5, Number(n) || 5));
+  return "★".repeat(k) + "☆".repeat(5 - k);
+}
+
+async function loadReviews() {
+  const grid = document.getElementById("reviewGrid");
+  if (!grid) return;
+  try {
+    const res = await fetch(REVIEWS_URL, { headers: { Accept: "application/json" } });
+    const data = await res.json();
+    const list = (data && data.reviews) || [];
+    if (!list.length) {
+      grid.innerHTML = `
+      <article class="review review--empty">
+        <div class="stars">★★★★★</div>
+        <p>مازال ما نشرنا حتى تقييم. كنأكدو كل تقييم قبل النشر، ودابا عندنا 0 تقييم منشور. إلا شريتي من عندنا، كتب لينا تجربتك — راه كتساعد زبناء آخرين بزاف.</p>
+        <div class="review__who">
+          <div class="review__avatar">L</div>
+          <div><b>LYLA Food</b><span>التقييمات كتتنشر من بعد المراجعة</span></div>
+        </div>
+      </article>`;
+      return;
+    }
+    grid.innerHTML = list.map(r => {
+      const who = (r.name || "").trim();
+      const initial = who ? who.charAt(0) : "ز";
+      const meta = [r.city, PACK_LABEL[r.pack] || ""].filter(Boolean).join(" • ");
+      const photo = r.photo_url ? `<img class="review__photo" src="${r.photo_url}" alt="صورة من الزبون" loading="lazy">` : "";
+      return `<article class="review">
+        <div class="stars">${reviewStars(r.rating)}</div>
+        <p>«${(r.text || "").replace(/</g, "&lt;")}»</p>
+        ${photo}
+        <div class="review__who">
+          <div class="review__avatar">${initial}</div>
+          <div><b>${who.replace(/</g, "&lt;")}</b><span>${meta}</span></div>
+        </div>
+      </article>`;
+    }).join("");
+  } catch (e) {
+    grid.innerHTML = `<article class="review review--empty"><p>ما قدرناش نحمّلو التقييمات دابا. عاود حدّث الصفحة.</p></article>`;
+  }
+}
+loadReviews();
+
+(function initReviewForm() {
+  const form = document.getElementById("reviewFormEl");
+  if (!form) return;
+  const msg = document.getElementById("reviewMsg");
+  const setMsg = (t, ok) => {
+    msg.textContent = t;
+    msg.className = "rf-msg " + (ok ? "rf-msg--ok" : "rf-msg--err");
+  };
+
+  if (localStorage.getItem("lyla_review_sent")) {
+    form.innerHTML = '<p class="rf-msg rf-msg--ok">تصيفط ليك التقييم، شكرًا 🙏 غادي يظهر من بعد المراجعة.</p>';
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form).entries());
+    const name = String(d.rname || "").trim();
+    const text = String(d.rtext || "").trim();
+    if (name.length < 2) return setMsg("كتب السمية ديالك.", false);
+    if (text.length < 20) return setMsg("كتب تجربة أطول شوية (20 حرف على الأقل).", false);
+
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "كنصيفطو...";
+    try {
+      const res = await fetch(REVIEW_CREATE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name, city: String(d.rcity || "").trim(), rating: Number(d.rating) || 5,
+          text, pack: d.pack || ""
+        })
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) throw new Error(json.error || "failed");
+      localStorage.setItem("lyla_review_sent", "1");
+      form.reset();
+      setMsg("شكرًا 🙏 التقييم وصل، وغادي يظهر من بعد المراجعة.", true);
+      btn.textContent = "تصيفط";
+    } catch (err) {
+      setMsg("وقع مشكل. عاود المحاولة.", false);
+      btn.textContent = "صيفط التقييم";
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
 
 /* ---------- المودال ---------- */
 document.getElementById("closeModal").addEventListener("click", () => {
